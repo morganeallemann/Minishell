@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:38:17 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 14:59:44 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:23:20 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,30 @@ typedef struct s_pipex
 
 typedef struct s_shell_data_prompt
 {
-    char **env;
-    char **cmd;
-    char *prompt;
-    char *prev_input;
-    t_list  *lst_input;
-    t_pipex		pipe;
-} t_prompt;
+	char **env;
+	char **cmd;
+	char *prompt;
+	char *prev_input;
+	t_list  *lst_input;
+	t_pipex		pipe;
+}	t_prompt;
 
 
 
+/* Gestion de signaux */
+
+/*utils*/
+void *safe_malloc(size_t size);
+char *strjoin_minus_arg(char *s1, char *s2);
+
+
+/*init data struct*/
+int init_data_struct(t_prompt *prompt);
+int init_data(t_prompt *prompt, char **env);
+
+/*setup envirenement*/
+char	**cpy_env(char *env[]);
+char	*shlvl_up(char *env_prompt);
 
 /*utils*/
 void *safe_malloc(size_t size);
@@ -71,6 +85,8 @@ char	*shlvl_up(char *env_prompt);
 
 
 
+/* Gestion de signaux */
 
-#endif
+int		set_signal(void);
 
+# endif
