@@ -6,7 +6,7 @@
 #    By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 15:53:11 by inaranjo          #+#    #+#              #
-#    Updated: 2023/07/06 11:55:43 by inaranjo         ###   ########.fr        #
+#    Updated: 2023/07/06 14:53:53 by inaranjo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,10 @@ LIBFT = $(LIBFT_PATH)libft.a
 LIBFT_PATH = libft/
 
 SRC =	main.c \
+		init_prompt.c \
+		setup_env.c \
+		sig_handler.c \
+		utils.c \
 
 CC = gcc
 

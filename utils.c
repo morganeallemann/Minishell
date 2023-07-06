@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 11:42:21 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 15:13:24 by inaranjo         ###   ########.fr       */
+/*   Created: 2023/07/06 14:20:14 by inaranjo          #+#    #+#             */
+/*   Updated: 2023/07/06 14:28:25 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "minishell.h"
 
-int	g_exit_status;
 
-int main(int ac, char *av[],char *env[])
+void *safe_malloc(size_t size)
 {
-    t_prompt prompt;
-    
-    (void) av;
-    if(ac != 1 || init_data(&prompt,env) == 1)
-        return (1);
-    while(42)
-    {
-        init_data_struct(&prompt);
-        // add init lst_prompt
-        prompt.prompt = readline("ʕ•́ᴥ•̀ʔっ");
-        
-    }
-    return (0);
+    void *node;
 
+    node = malloc(size);
+    if (node == NULL)
+    {
+        printf("Memory allocation failed !!\n");
+        exit(10);
+    }
+    return node;
 }
 
+char *strjoin_minus_arg(char *s1, char *s2)
+{
+    void *temp;
 
-
+    temp = ft_strjoin(s1, s2);
+    free(s1);
+    return (temp);
+}
