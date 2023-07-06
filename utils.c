@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:20:14 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 14:28:25 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:49:48 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,19 @@ char *strjoin_minus_arg(char *s1, char *s2)
     temp = ft_strjoin(s1, s2);
     free(s1);
     return (temp);
+}
+
+int exit_err(char **cmd, int err_type)
+{
+	if (err_type == 1)
+	{
+		printf("%s: too many arguments\n", cmd[0]);
+		exit (1);
+	}
+	else if (err_type == 2)
+	{
+		printf("%s: numeric argument required\n", cmd[1]);
+		exit (255);
+	}
+	return (0);
 }

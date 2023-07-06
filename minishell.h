@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:38:17 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 15:35:59 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:03:00 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_shell_data_prompt
 /*utils*/
 void *safe_malloc(size_t size);
 char *strjoin_minus_arg(char *s1, char *s2);
+int exit_err(char **cmd, int err_type);
 
 
 /*init data struct*/
@@ -89,10 +90,12 @@ int init_data(t_prompt *prompt, char **env);
 char	**cpy_env(char *env[]);
 char	*shlvl_up(char *env_prompt);
 
-
-
 /* Gestion de signaux */
-
 int		set_signal(void);
+
+/*builtin*/
+int	builtin_exit(char **cmd);
+
+
 
 # endif

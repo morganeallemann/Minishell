@@ -6,7 +6,7 @@
 #    By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/25 15:53:11 by inaranjo          #+#    #+#              #
-#    Updated: 2023/07/06 15:25:46 by inaranjo         ###   ########.fr        #
+#    Updated: 2023/07/06 15:45:48 by inaranjo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC =	main.c \
 		setup_env.c \
 		sig_handler.c \
 		utils.c \
+		built_in.c \
 
 CC = gcc
 
