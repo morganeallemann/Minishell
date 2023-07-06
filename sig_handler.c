@@ -1,32 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 11:42:21 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 13:39:10 by inaranjo         ###   ########.fr       */
+/*   Created: 2023/07/06 13:46:50 by inaranjo          #+#    #+#             */
+/*   Updated: 2023/07/06 13:47:20 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-
-
-
-int main(int ac, char *av[],char *env)
-{
-    t_prompt *prompt;
-    
-    (void) av;
-
-    while(42)
-    {
-        
-    }
-
-}
-
-
+# include "minishell.h"
 

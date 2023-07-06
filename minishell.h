@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:38:17 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 13:37:51 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:51:20 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # include <sys/wait.h>
 # include <dirent.h>
 
+# define 
+
+
+
+
 typedef struct s_shell_data_prompt
 {
     char **env;
@@ -33,6 +38,12 @@ typedef struct s_shell_data_prompt
     t_list  *lst_input;
     // add struct pipex
 } t_prompt;
+
+
+
+
+
+
 
 #endif
 
