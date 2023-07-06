@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:38:17 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 13:25:48 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:37:51 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_shell_data_prompt
     char *prev_input;
     t_list  *lst_input;
     // add struct pipex
-} t_shell_data_prompt;
+} t_prompt;
 
 #endif
 

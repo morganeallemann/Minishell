@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:42:21 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 13:33:08 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:37:59 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,9 @@
 
 
 
-
-
-
-
-
-
-
-
 int main(int ac, char *av[],char *env)
 {
-    t_shell_data_prompt *prompt;
+    t_prompt *prompt;
     
     (void) av;
 
