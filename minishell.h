@@ -24,26 +24,20 @@
 # include <sys/wait.h>
 # include <dirent.h>
 
-# define 
-
-
-
-
-typedef struct s_shell_data_prompt
+typedef struct	s_prompt
 {
-    char **env;
-    char **cmd;
-    char *prompt;
-    char *prev_input;
-    t_list  *lst_input;
-    // add struct pipex
-} t_prompt;
+	char **env;
+	char **cmd;
+	char *prompt;
+	char *prev_input;
+	t_list  *lst_input;
+	// add struct pipex
+}	t_prompt;
 
 
 
+/* Gestion de signaux */
 
+int		set_signal(void);
 
-
-
-#endif
-
+# endif

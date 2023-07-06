@@ -15,7 +15,7 @@ NAME = minishell
 LIBFT = $(LIBFT_PATH)libft.a
 LIBFT_PATH = libft/
 
-SRC =	main.c \
+SRC =	main.c sig_handler.c\
 
 CC = gcc
 
