@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:42:21 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 15:13:24 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:36:43 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ int main(int ac, char *av[],char *env[])
     (void) av;
     if(ac != 1 || init_data(&prompt,env) == 1)
         return (1);
+    if((set_signal()) == -1)
+        return (0);    
     while(42)
     {
         init_data_struct(&prompt);
         // add init lst_prompt
-        prompt.prompt = readline("ʕ•́ᴥ•̀ʔっ");
+        prompt.prompt = readline(VIOLET"ʕ•́ᴥ•̀ʔっ"BLANC);
         
     }
     return (0);

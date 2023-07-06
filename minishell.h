@@ -6,7 +6,7 @@
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:38:17 by inaranjo          #+#    #+#             */
-/*   Updated: 2023/07/06 15:23:20 by inaranjo         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:35:59 by inaranjo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # include <termios.h> 
 # include <sys/wait.h>
 # include <dirent.h>
+# include <signal.h>
+
+# define VIOLET "\033[35m"
+# define RESET "\033[0m"
+# define GREEN "\033[38;5;10m"
+# define BLANC "\033[37m"
 
 extern int	g_exit_status;
 
