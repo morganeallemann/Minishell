@@ -14,12 +14,12 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*str;
-	unsigned int	i;
-	unsigned int	j;
+	//unsigned int	i;
+	//unsigned int	j;
 	size_t			len_temp;
 
-	i = 0;
-	j = 0;
+	//i = 0;
+	//j = 0;
 	if (s == NULL)
 		return (NULL);
 	if ((unsigned int)ft_strlen(s) < start)

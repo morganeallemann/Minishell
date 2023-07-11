@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ramasse_miette.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,38 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 
-int	g_exit_status;
+# include "minishell.h"
 
-int main(int ac, char *av[],char *env[])
+void rm_malloc(size_t size)
 {
-    t_prompt prompt;
+    void *rm; 
+
+    rm = safe_malloc(sizeof(char *));
     
-    (void) av;
-    if(ac != 1 || init_data(&prompt,env) == 1)
-        return (1);
-    if((set_signal()) == -1)
-        return (0);    
-    while(42)
-    {
-        init_data_struct(&prompt);
-        data_lstclear(&prompt.lst_input, free);
-        prompt.prompt = readline(VIOLET"ʕ•́ᴥ•̀ʔっ"BLANC);
-        if (prompt.prompt == NULL)
-		{
-			printf ("exit\n");
-			free(prompt.prompt);
-			free(prompt.prev_input);
-			mini_lstclear(&prompt.lst_input, free);
-			exit (g_exit_status);
-		}
-        if (prompt.prompt[0] != '\0' && is_only_space(prompt.prompt) == 1)
-			treating_line(&prompt);
-    }
-    return (0);
 
 }
 
+void	*gc_malloc(size_t size)
+{
+	void	*garb;
 
+	garb = w_ft_calloc_prot(1, size);
+	ft_gc(garb, ADD);
+	return (garb);
+}
 
+void	*ft_gc(void *garb, int status)
+{
+	static t_list	*gc_list;
+
+	if (status == ADD)
+		ft_lstadd_front(&gc_list, ft_lstnew(garb));
+	else
+		gc_lstclear(&gc_list, free);
+	return (NULL);
+}

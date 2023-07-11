@@ -12,7 +12,6 @@
 
 # include "minishell.h"
 
-
 void *safe_malloc(size_t size)
 {
     void *node;
@@ -24,6 +23,19 @@ void *safe_malloc(size_t size)
         exit(10);
     }
     return node;
+}
+
+void    *safe_malloc_bzero(int nmemb, size_t size)
+{
+	void	*node;
+
+	node = ft_calloc(nmemb, size);
+	if (node == NULL)
+	{
+		printf("Memory allocation failed !!\n");
+		exit(10);
+	}
+	return (node);
 }
 
 char *strjoin_minus_arg(char *s1, char *s2)

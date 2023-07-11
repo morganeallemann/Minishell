@@ -21,6 +21,11 @@ SRC =	main.c \
 		sig_handler.c \
 		utils.c \
 		built_in.c \
+		manage_lst.c \
+		parsing_prompt.c \
+		parsing_tokens.c \
+		useless_token.c \
+		ramasse_miette.c \
 
 CC = gcc
 
