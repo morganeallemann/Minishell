@@ -10,16 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+<<<<<<< HEAD
 # include "minishell.h"
 
 void rm_malloc(size_t size)
+=======
+#include "minishell.h"
+
+void	rm_malloc(size_t size)
+>>>>>>> 13e5920b3c2ac1c6f9376d6a6ddcf782d7bfd7ad
 {
     void *rm; 
 
     rm = safe_malloc(sizeof(char *));
+<<<<<<< HEAD
 	lst_rm(rm,ADD);
 	return(rm);
 
+=======
+>>>>>>> 13e5920b3c2ac1c6f9376d6a6ddcf782d7bfd7ad
 }
 
 void	*lst_rm(void *garb, int status)
@@ -32,6 +41,7 @@ void	*lst_rm(void *garb, int status)
 		gc_lstclear(&rm_list, free);
 	return (NULL);
 }
+<<<<<<< HEAD
 
 void	rm_lstdelone(t_list *lst, void (*del)(void*))
 {
@@ -60,3 +70,5 @@ void	rm_lstclear(t_list **lst, void (*del)(void*))
 		}
 	}
 }
+=======
+>>>>>>> 13e5920b3c2ac1c6f9376d6a6ddcf782d7bfd7ad

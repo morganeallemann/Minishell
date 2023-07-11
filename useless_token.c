@@ -14,8 +14,8 @@
 
 int	manage_useless_token(t_prompt *prompt, int i, const char *tok[])
 {
-	int			size;
-	char		*str;
+	int				size;
+	char			*str;
 	t_token_data	*cell;
 
 	cell = safe_malloc(sizeof(t_token_data));
@@ -35,8 +35,6 @@ int	manage_useless_token(t_prompt *prompt, int i, const char *tok[])
 		free(cell);
 	return (i + size);
 }
-
-
 
 /*Vérifie si le caractère actuel correspond à un token en utilisant ft_strncmp
 Retourne la taille finale de la sous-chaîne non tokenable
@@ -67,5 +65,3 @@ int	other_token_size(t_prompt *prompt, int i, const char *tok[])
 	}
 	return (size);
 }
-
-

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	tokenizer(t_prompt *prompt, int i, const char *tok[])
 {
@@ -43,10 +43,10 @@ cell->type = 0 (QUOTE)
 cell->str 0= 'World!'*/
 int	manage_quotes(t_prompt *prompt, int type, int i)
 {
-	int			j;
-	char		c;
-	char		*line;
-	t_token_data      *cell;
+	int				j;
+	char			c;
+	char			*line;
+	t_token_data	*cell;
 
 	cell = safe_malloc(sizeof(struct s_token_data));
 	line = prompt->prompt;
@@ -57,7 +57,7 @@ int	manage_quotes(t_prompt *prompt, int type, int i)
 	{
 		cell->type = QUOTE;
 		c = '\'';
-	}		
+	}
 	if (check_in_quotes(line, &i, c) == -1)
 	{
 		free (cell);
@@ -89,8 +89,8 @@ cell->type = enum 2 (PIPE)
 */
 int	manage_pipes(t_prompt *prompt, int i)
 {
-	int			j;
-	char		*line;
+	int				j;
+	char			*line;
 	t_token_data	*cell;
 
 	cell = safe_malloc(sizeof(struct s_token_data));
@@ -105,8 +105,8 @@ int	manage_pipes(t_prompt *prompt, int i)
 
 int	manage_spaces(t_prompt *prompt, int i)
 {
-	int			j;
-	char		*line;
+	int				j;
+	char			*line;
 	t_token_data	*cell;
 
 	cell = safe_malloc(sizeof(struct s_token_data));

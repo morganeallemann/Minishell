@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void *safe_malloc(size_t size)
+void	*safe_malloc(size_t size)
 {
-    void *node;
+	void	*node;
 
-    node = malloc(size);
-    if (node == NULL)
-    {
-        printf("Memory allocation failed !!\n");
-        exit(10);
-    }
-    return node;
+	node = malloc(size);
+	if (node == NULL)
+	{
+		printf("Memory allocation failed !!\n");
+		exit(10);
+	}
+	return (node);
 }
 
-void    *safe_malloc_bzero(int nmemb, size_t size)
+void	*safe_malloc_bzero(int nmemb, size_t size)
 {
 	void	*node;
 
@@ -38,16 +38,16 @@ void    *safe_malloc_bzero(int nmemb, size_t size)
 	return (node);
 }
 
-char *strjoin_minus_arg(char *s1, char *s2)
+char	*strjoin_minus_arg(char *s1, char *s2)
 {
-    void *temp;
+	void	*temp;
 
-    temp = ft_strjoin(s1, s2);
-    free(s1);
-    return (temp);
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	return (temp);
 }
 
-int exit_err(char **cmd, int err_type)
+int	exit_err(char **cmd, int err_type)
 {
 	if (err_type == 1)
 	{
