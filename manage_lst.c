@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_lst.c                                        :+:      :+:    :+:   */
+/*   manage_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 /*Delete seulement un noeud/cell cible*/
 void	data_lstdelone(t_list *cell, void (*del)(void*))
@@ -25,7 +25,6 @@ void	data_lstdelone(t_list *cell, void (*del)(void*))
 		free(cell);
 	}
 }
-
 
 /*delete la totalite de la liste*/
 void	data_lstclear(t_list **lst, void (*del)(void*))
@@ -47,8 +46,8 @@ void	data_lstclear(t_list **lst, void (*del)(void*))
 /*imprime la list pour debug*/
 void	print_lst_prompt(t_prompt prompt)
 {
-	t_list		*lst;
-	t_token_data      *cont;
+	t_list			*lst;
+	t_token_data	*cont;
 
 	lst = prompt.lst_input;
 	while (lst != NULL)

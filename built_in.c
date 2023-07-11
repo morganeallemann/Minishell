@@ -43,6 +43,3 @@ int	builtin_exit(char **cmd)
 		exit (g_exit_status);
 	}
 }
-
-
-

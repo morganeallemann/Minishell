@@ -10,16 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 
-# include "minishell.h"
-
-void rm_malloc(size_t size)
+void	rm_malloc(size_t size)
 {
     void *rm; 
 
     rm = safe_malloc(sizeof(char *));
-    
-
 }
 
 void	*gc_malloc(size_t size)
