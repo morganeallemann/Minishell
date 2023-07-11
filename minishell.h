@@ -78,6 +78,12 @@ enum e_token
 	OTHER,
 };
 
+enum e_rm_status
+{
+	ADD,
+	DEL,
+	EXT,
+};
 
 
 /*utils*/
@@ -85,6 +91,7 @@ void *safe_malloc(size_t size);
 void    *safe_malloc_bzero(int nmemb, size_t size);
 char *strjoin_minus_arg(char *s1, char *s2);
 int exit_err(char **cmd, int err_type);
+void	free_double(char **env);
 
 /*init data struct*/
 int init_data_struct(t_prompt *prompt);
@@ -122,6 +129,9 @@ int	manage_useless_token(t_prompt *prompt, int i, const char *tok[]);
 int	other_token_size(t_prompt *prompt, int i, const char *tok[]);
 
 /*Ramasse miette alias Garbage collector*/
-
+void rm_malloc(size_t size);
+void	*lst_rm(void *garb, int status);
+void	rm_lstclear(t_list **lst, void (*del)(void*));
+void	rm_lstdelone(t_list *lst, void (*del)(void*));
 
 # endif

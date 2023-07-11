@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 # include "minishell.h"
 
 void rm_malloc(size_t size)
@@ -18,26 +17,46 @@ void rm_malloc(size_t size)
     void *rm; 
 
     rm = safe_malloc(sizeof(char *));
-    
+	lst_rm(rm,ADD);
+	return(rm);
 
 }
 
-void	*gc_malloc(size_t size)
+void	*lst_rm(void *garb, int status)
 {
-	void	*garb;
-
-	garb = w_ft_calloc_prot(1, size);
-	ft_gc(garb, ADD);
-	return (garb);
-}
-
-void	*ft_gc(void *garb, int status)
-{
-	static t_list	*gc_list;
+	static t_list	*rm_list;
 
 	if (status == ADD)
-		ft_lstadd_front(&gc_list, ft_lstnew(garb));
+		ft_lstadd_front(&rm_list, ft_lstnew(garb));
 	else
-		gc_lstclear(&gc_list, free);
+		gc_lstclear(&rm_list, free);
 	return (NULL);
+}
+
+void	rm_lstdelone(t_list *lst, void (*del)(void*))
+{
+	void	*node;
+
+	node = lst->content;
+	if (lst && del && node)
+	{
+		del(node);
+		free(lst);
+	}
+}
+
+void	rm_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*temp;
+
+	temp = *lst;
+	if (*lst && del)
+	{
+		while (*lst)
+		{
+			temp = (*lst)->next;
+			rm_lstdelone(*lst, del);
+			*lst = temp;
+		}
+	}
 }

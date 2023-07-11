@@ -61,3 +61,13 @@ int exit_err(char **cmd, int err_type)
 	}
 	return (0);
 }
+
+void	free_double(char **env)
+{
+	int	i;
+
+	i = 0;
+	while (env[i] != NULL)
+		free(env[i++]);
+	free (env);
+}
