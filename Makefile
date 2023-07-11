@@ -26,6 +26,7 @@ SRC =	main.c \
 		parsing_tokens.c \
 		useless_token.c \
 		ramasse_miette.c \
+		parsing_cmds.c \
 
 CC = gcc
 

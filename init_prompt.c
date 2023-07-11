@@ -31,8 +31,6 @@ int init_data_struct(t_prompt *prompt)
     return (0);
 }
 
-
-
 /*
 prompt->cmd : sotcker un tableau cmds 
 prompt->pipe.limiter : stocker des informations sur les limites ou les restrictions liees aux commande
@@ -43,12 +41,12 @@ prompt->pipe.app_on  :  stocker des indicateurs ou des paramètres spécifiques 
 */
 int	init_cmds(t_prompt *prompt)
 {
-	prompt->cmd = gc_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.limiter = gc_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.hd_on = gc_malloc(prompt->pipe.n_cmd * sizeof(int));
-	prompt->pipe.file_in = gc_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.file_out = gc_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.app_on = gc_malloc(prompt->pipe.n_cmd * sizeof(int));
+	prompt->cmd = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
+	prompt->pipe.limiter = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
+	prompt->pipe.hd_on = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
+	prompt->pipe.file_in = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
+	prompt->pipe.file_out = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
+	prompt->pipe.app_on = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
 	return (0);
 }
 

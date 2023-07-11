@@ -100,6 +100,7 @@ int			exit_err(char **cmd, int err_type);
 /*init data struct*/
 int			init_data_struct(t_prompt *prompt);
 int			init_data(t_prompt *prompt, char **env);
+int	init_cmds(t_prompt *prompt);
 
 /*setup envirenement*/
 char		**cpy_env(char *env[]);
@@ -131,9 +132,12 @@ int			manage_useless_token(t_prompt *prompt, int i, const char *tok[]);
 int			other_token_size(t_prompt *prompt, int i, const char *tok[]);
 
 /*Ramasse miette alias Garbage collector*/
-void rm_malloc(size_t size);
+void	*rm_malloc(size_t size);
 void	*lst_rm(void *garb, int status);
 void	rm_lstclear(t_list **lst, void (*del)(void*));
 void	rm_lstdelone(t_list *lst, void (*del)(void*));
+
+/*parsing cmds*/
+
 
 # endif
