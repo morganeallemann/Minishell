@@ -51,13 +51,13 @@ void	ft_add_history(t_prompt *prompt)
 	}
 }
 
-void	treating_line(t_minish *minish)
+void	treating_line(t_prompt *prompt)
 {
-	ft_add_history(minish);
-	if (analyse_token_prompt(minish) != -1)
+	ft_add_history(prompt);
+	if (analyse_token_prompt(prompt) != -1)
 	{
-		g_exit_status = main_pipe(minish, &minish->ppx);
-		data_lstclear(&minish->lst_line, free);
+		g_exit_status = glory_pipe(prompt, &prompt->pipe);
+		data_lstclear(&prompt->lst_input, free);
 	}
 	else
 	{

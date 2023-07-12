@@ -89,7 +89,7 @@ int	set_pipe_data(char **av, t_pipex *pipex, char **env, int *i)
 }
 
 
-int	main_pipe(t_prompt *prompt, t_pipex *pipex)
+int	glory_pipe(t_prompt *prompt, t_pipex *pipex)
 {
 	int		i;
 	int		init_status;

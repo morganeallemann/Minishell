@@ -103,6 +103,7 @@ void		print_lst_prompt(t_prompt prompt);
 /*parsing*/
 int			is_only_space(char *str);
 void		ft_add_history(t_prompt *prompt);
+void		treating_line(t_prompt *prompt);
 
 /*parsing tokeniser*/
 int			analyse_token_prompt(t_prompt *prompt);
@@ -140,11 +141,13 @@ char		*checkpath_env(char *env[], char *cmd);
 char		*exec_cmd(char **paths, char *cmd);
 char		**get_path_env(char *env[]);
 
+
 /*setup pipes*/
 int			set_output_fd(t_pipex *pipe, int i);
 int			set_in_out_fd(t_pipex *pipe);
 int			set_cmd_exc(t_pipex *pipex, char **av, char **env);
 int			set_pipe_data(char **av, t_pipex *pipex, char **env, int *i);
+int			glory_pipe(t_prompt *prompt, t_pipex *pipex);
 
 /*setup redirections*/
 void		redir_fill(t_prompt *prompt, int type, char *res, int i);
@@ -161,6 +164,8 @@ int			free_str_ptr(char **ptr, int j);
 
 /*setup builtins*/
 int			pre_fork_builtin(char **cmd, t_prompt *prompt);
+int			is_prefork_builtin(char **cmd);
+void		check_for_builtin(char **cmd, t_prompt *prompt, int i);
 int			builtin_exit(char **cmd);
 
 /*utils*/

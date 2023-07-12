@@ -17,16 +17,27 @@ LIBFT_PATH = libft/
 
 SRC =	main.c \
 		init_prompt.c \
-		setup_env.c \
-		sig_handler.c \
-		utils.c \
-		built_in.c \
+		expand_var.c \
+		init_prompt.c \
 		manage_lst.c \
-		parsing_prompt.c \
-		parsing_tokens.c \
-		useless_token.c \
-		ramasse_miette.c \
 		parsing_cmds.c \
+		parsing_prompt.c \
+		parsing_tokens \
+		ramasse_miette.c \
+		setup_builtin.c \
+		setup_env.c \
+		setup_err.c \
+		setup_pipes.c \
+		setup_redir \
+		sig_hadler.c \
+		split_simulator.c \
+		useless_token.c \
+		utils_cmd.c \
+		utils_expand.c \
+		utils_pipex.c \
+		utils_redir.c \
+		utils.c \
+
 
 CC = gcc
 
