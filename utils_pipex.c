@@ -56,7 +56,7 @@ void	free_pipepline(t_pipex *pipe)
 		free(pipe->fd_hd);
 }
 
-void	ft_looppid(t_pipex *pipex, t_prompt *prompt, int idx)
+void	set_child_process(t_pipex *pipex, t_prompt *prompt, int idx)
 {
 	//ft_signals_n_attr(NO_REPROMPT);
 	pipex->pid[idx] = fork();
@@ -65,14 +65,14 @@ void	ft_looppid(t_pipex *pipex, t_prompt *prompt, int idx)
 	if (pipex->pid[idx] == 0)
 	{
 		if (pipex->n_cmd == 1)
-			ft_redir_only_cmd(pipex, idx);
+			redir_only_cmd(pipex, idx);
 		else if (idx == 0)
-			ft_redir_first_cmd(pipex, idx);
+			redir_first_cmd(pipex, idx);
 		else if (idx == pipex->n_cmd - 1)
-			ft_redir_last_cmd(pipex, idx);
+			redir_last_cmd(pipex, idx);
 		else
-			ft_redir_mid_cmd(pipex, idx);
-		ft_close_fds(pipex);
+			redir_mid_cmd(pipex, idx);
+		close_fd(pipex);
 		//§ft_signals_n_attr(UNSET);
 		check_for_builtin(pipex->cmd[idx], prompt, idx);
 		execve(pipex->path[idx], pipex->cmd[idx], prompt->env);
