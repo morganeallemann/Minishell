@@ -102,3 +102,26 @@ void	close_all_fd(t_pipex *pipex)
 		i++;
 	}
 }
+
+int	set_waitpid_status(t_pipex *pipex)
+{
+	int	i;
+	int	wstatus;
+	int	status;
+
+	i = 0;
+	status = 0;
+	while (i < pipex->n_cmd)
+	{
+		close_all_fd(pipex);
+		waitpid(pipex->pid[i], &wstatus, 0);
+		if ((pipex->cmd[i][0] != NULL && is_prefork_builtin(pipex->cmd[i]) == 0)
+			|| (g_exit_status == 131 || g_exit_status == 130))
+			status = g_exit_status;
+		if (WIFEXITED(wstatus))
+			status = WEXITSTATUS(wstatus);
+		i++;
+	}
+	free_pipepline(pipex);
+	return (status);
+}

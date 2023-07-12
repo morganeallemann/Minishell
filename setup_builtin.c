@@ -26,6 +26,24 @@ int	pre_fork_builtin(char **cmd, t_prompt *prompt)
 
 }
 
+int	is_prefork_builtin(char **cmd)
+{
+	int			i;
+	const char	*builtin[] = {
+		"exit", NULL,
+	};
+
+	i = 0;
+	while (builtin[i] != NULL)
+	{
+		if (ft_strncmp(cmd[0], builtin[i], ft_strlen(builtin[i])) == 0)
+			return (0);
+		i++;
+	}
+	return (-1);
+}
+
+
 void	check_for_builtin(char **cmd, t_prompt *prompt, int i)
 {
 	if (cmd[0] == NULL)

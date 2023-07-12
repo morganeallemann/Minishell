@@ -105,8 +105,8 @@ int	main_pipe(t_prompt *prompt, t_pipex *pipex)
 	while (i < pipex->n_cmd)
 	{
 		if (pre_fork_builtin(pipex->cmd[i], prompt) == 0)
-			ft_looppid(pipex, prompt, i);
+			set_child_process(pipex, prompt, i);
 		i++;
 	}
-	return (ft_waitnclose(pipex));
+	return (set_waitpid_status(pipex));
 }
