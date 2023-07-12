@@ -36,8 +36,8 @@ typedef struct s_pipex
 {
 	int		**fd;
 	int		**fd_hd;
-	int		*hd_on;
-	int		*app_on;
+	int		*here_doc;
+	int		*app_end;
 	int		*pid;
 	char	***cmd;
 	char	**limiter;
@@ -86,31 +86,14 @@ enum e_rm_status
 };
 
 
-/*utils*/
-void *safe_malloc(size_t size);
-void    *safe_malloc_bzero(int nmemb, size_t size);
-char *strjoin_minus_arg(char *s1, char *s2);
-int exit_err(char **cmd, int err_type);
-void	free_double(char **env);
-void		*safe_malloc(size_t size);
-void		*safe_malloc_bzero(int nmemb, size_t size);
-char		*strjoin_minus_arg(char *s1, char *s2);
-int			exit_err(char **cmd, int err_type);
-
 /*init data struct*/
 int			init_data_struct(t_prompt *prompt);
 int			init_data(t_prompt *prompt, char **env);
-int	init_cmds(t_prompt *prompt);
-
-/*setup envirenement*/
-char		**cpy_env(char *env[]);
-char		*shlvl_up(char *env_prompt);
+int			init_cmds(t_prompt *prompt);
+int			init_pipex(t_pipex *pipe,t_prompt *prompt);
 
 /* Gestion de signaux */
 int			set_signal(void);
-
-/*builtin*/
-int			builtin_exit(char **cmd);
 
 /*Manipulation de la liste chainee*/
 void		data_lstdelone(t_list *cell, void (*del)(void*));
@@ -131,13 +114,68 @@ int			manage_spaces(t_prompt *prompt, int i);
 int			manage_useless_token(t_prompt *prompt, int i, const char *tok[]);
 int			other_token_size(t_prompt *prompt, int i, const char *tok[]);
 
-/*Ramasse miette alias Garbage collector*/
-void	*rm_malloc(size_t size);
-void	*lst_rm(void *garb, int status);
-void	rm_lstclear(t_list **lst, void (*del)(void*));
-void	rm_lstdelone(t_list *lst, void (*del)(void*));
-
 /*parsing cmds*/
+void		add_cmds(t_prompt *prompt);
+void		setup_redirs(t_token_data *cont, t_prompt *prompt, int i);
+void		process_token_data(t_token_data *cont, t_prompt *prompt, int i);
+void		update_cmd(t_prompt *prompt, char *strseg, char *delim, int i);
+void		merge_cmd(t_prompt *prompt, char *strseg, char *delim, int i);
+
+/*Ramasse miette alias Garbage collector*/
+void		*rm_malloc(size_t size);
+void		*lst_rm(void *garb, int status);
+void		rm_lstclear(t_list **lst, void (*del)(void*));
+void		rm_lstdelone(t_list *lst, void (*del)(void*));
+
+/*setup erros*/
+int			free_under_condition(t_prompt *prompt);
+int			free_cmd_lst(t_prompt *prompt);
+void		ft_free(char **av);
+int			ft_error(char *error, int errnum);
+ 
+ /*setup envirenement*/
+char		**cpy_env(char *env[]);
+char		*shlvl_up(char *env_prompt);
+char		*checkpath_env(char *env[], char *cmd);
+char		*exec_cmd(char **paths, char *cmd);
+char		**get_path_env(char *env[]);
+
+/*setup pipes*/
+int			set_output_fd(t_pipex *pipe, int i);
+int			set_in_out_fd(t_pipex *pipe);
+int			set_cmd_exc(t_pipex *pipex, char **av, char **env);
+int			set_pipe_data(char **av, t_pipex *pipex, char **env, int *i);
+
+/*setup redirections*/
+void		redir_fill(t_prompt *prompt, int type, char *res, int i);
+int			manage_redir(t_prompt *prompt, int type, int i);
+int			skype_quotes(int i, char *input);
+int			ft_heredoc(t_pipex *pipe, int i);
+
+/*split_simulator*/
+char		**split_simulator(char const *str, char c);
+int			count_substrim(char const *str, char c);
+void		*extract_substr(char const *str, char c, char **ptr, int *i);
+void		analyse_substr(const char *str, int *i, int *buf, int *space);
+int			free_str_ptr(char **ptr, int j);
+
+/*setup builtins*/
+int			pre_fork_builtin(char **cmd, t_prompt *prompt);
+int			builtin_exit(char **cmd);
+
+/*utils*/
+void		*safe_malloc(size_t size);
+void   		*safe_malloc_bzero(int nmemb, size_t size);
+char		*strjoin_minus_arg(char *s1, char *s2);
+int			exit_err(char **cmd, int err_type);
+void		free_double(char **env);
+
+/*utils cmds*/
+t_list		*count_cmd(int *i, t_list *lst);
+
+/*utils pipex*/
+void	free_pipepline(t_pipex *ppx);
+void	loop_free(t_pipex *pipe);
 
 
 # endif

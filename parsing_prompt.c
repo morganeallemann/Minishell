@@ -54,14 +54,14 @@ void	ft_add_history(t_prompt *prompt)
 void	treating_line(t_minish *minish)
 {
 	ft_add_history(minish);
-	if (ft_token(minish) != -1)
+	if (analyse_token_prompt(minish) != -1)
 	{
 		g_exit_status = main_pipe(minish, &minish->ppx);
-		mini_lstclear(&minish->lst_line, free);
+		data_lstclear(&minish->lst_line, free);
 	}
 	else
 	{
-		printf("unexpected token ERROR\n");
+		printf("Please check : token ERROR\n");
 		g_exit_status = 2;
 	}
 }
@@ -87,5 +87,5 @@ int	analyse_token_prompt(t_prompt *prompt)
 			i++;
 	}
 	add_cmds(prompt);
-	return (ft_err_handling(prompt));
+	return (free_cmd_lst(prompt));
 }

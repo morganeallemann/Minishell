@@ -43,10 +43,27 @@ int	init_cmds(t_prompt *prompt)
 {
 	prompt->cmd = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
 	prompt->pipe.limiter = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.hd_on = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
+	prompt->pipe.here_doc = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
 	prompt->pipe.file_in = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
 	prompt->pipe.file_out = rm_malloc(prompt->pipe.n_cmd * sizeof(char *));
-	prompt->pipe.app_on = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
+	prompt->pipe.app_end = rm_malloc(prompt->pipe.n_cmd * sizeof(int));
 	return (0);
+}
+
+int init_pipex(t_pipex *pipe,t_prompt *prompt)
+{
+    pipe->fd = safe_malloc_bzero(pipe->n_cmd, sizeof(int *));
+	pipe->pid = safe_malloc_bzero(pipe->n_cmd, sizeof(int));
+	pipe->cmd = safe_malloc_bzero(pipe->n_cmd, sizeof(char **));
+	pipe->path = safe_malloc_bzero(pipe->n_cmd, sizeof(char *));
+	pipe->fd_hd = safe_malloc_bzero(pipe->n_cmd, sizeof(int *));
+	pipe->f_in = safe_malloc_bzero(pipe->n_cmd, sizeof(int));
+	pipe->f_out = safe_malloc_bzero(pipe->n_cmd, sizeof(int));
+    if (set_in_out_fd(pipe) == -1)
+		return (-1);
+	if (set_cmd_exc(pipe, prompt->cmd, prompt->env) == -1)
+		return (-1);
+	return (0);
+
 }
 

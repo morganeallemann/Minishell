@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+# include "minishell.h"
 
-int	g_exit_status;
-
-int	main(int ac, char *av[], char *env[])
+int	check_var_end(char *quote, int j)
 {
-	t_prompt	prompt;
-
-	(void) av;
-	if (ac != 1 || init_data(&prompt, env) == 1)
-		return (1);
-	if ((set_signal()) == -1)
+	if ((ft_isdigit(quote[j - 1])
+			|| quote[j - 1] == '?') && quote[j - 2] == '$')
 		return (0);
-	while (42)
-	{
-		init_data_struct(&prompt);
-		data_lstclear(&prompt.lst_input, free);
-		prompt.prompt = readline(VIOLET"ʕ•́ᴥ•̀ʔっ"BLANC);
-		if (prompt.prompt == NULL)
-		{
-			printf ("exit\n");
-			free(prompt.prompt);
-			free(prompt.prev_input);
-			data_lstclear(&prompt.lst_input, free);
-			exit (g_exit_status);
-		}
-		if (prompt.prompt[0] != '\0' && is_only_space(prompt.prompt) == 1)
-			treating_line(&prompt);
-	}
+	if (quote[j] != ' ' && quote[j] != '\"' && quote[j] != '\0'
+		&& quote[j] != '$' && quote[j] != '\'')
+		return (1);
 	return (0);
+}
+
+char	*itoa_exit_status(char *var)
+{
+	char	*temp;
+
+	temp = var;
+	var = ft_itoa(g_exit_status);
+	free(temp);
+	return (var);
+}
+
+
+int	escaped_str_size(char *input)
+{
+	int		j;
+	int		escaped_size;
+
+	j = 0;
+	escaped_size = 0;
+	while (input[j] != '\0')
+	{
+		if (input[j++] == ' ')
+			escaped_size += 2;
+		else
+			escaped_size++;
+	}
+	return (escaped_size);
 }

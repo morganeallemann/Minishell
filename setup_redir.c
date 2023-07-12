@@ -18,11 +18,11 @@ void    redir_fill(t_prompt *prompt, int type, char *res, int i)
 	{
 		update_ptr(prompt->pipe.file_out, i, res);
 		if (type == APP_OUT)
-			prompt->pipe.app_on[i] = 1;
+			prompt->pipe.app_end[i] = 1;
 	}
 	else if (type == HERE_DOC)
 	{
-		prompt->pipe.hd_on[i] = 1;
+		prompt->pipe.here_doc[i] = 1;
 		update_ptr(prompt->pipe.limiter, i, res);
 	}
 	else

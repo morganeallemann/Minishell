@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_in.c                                         :+:      :+:    :+:   */
+/*   setup_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inaranjo <inaranjo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,16 +14,30 @@
 
 int	g_exit_status;
 
-
 int	pre_fork_builtin(char **cmd, t_prompt *prompt)
 {
 	if (cmd[0] == NULL)
 		return (0);
 	if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
 		g_exit_status = builtin_exit(cmd);
+    else
+		return (0);
+	return (1);
 
 }
 
+void	check_for_builtin(char **cmd, t_prompt *prompt, int i)
+{
+	if (cmd[0] == NULL)
+	{
+		if (prompt->pipe.limiter[i] != NULL
+			|| prompt->pipe.file_in[i] != NULL
+			|| prompt->pipe.file_out[i] != NULL)
+			exit (0);
+		return ;
+	}
+
+}
 
 
 int	builtin_exit(char **cmd)

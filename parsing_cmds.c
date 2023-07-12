@@ -24,7 +24,7 @@ void	add_cmds(t_prompt *prompt)
 	while (lst != NULL)
 	{
 		cont = lst->content;
-		words_concat(cont, prompt, i);
+		process_token_data(cont, prompt, i);
 		if (cont->type >= APP_OUT && cont->type <= REDIR_IN)
 		{
 			if (ft_strncmp(cont->str, "", 1) != 0)
@@ -46,24 +46,24 @@ void	setup_redirs(t_token_data *cont, t_prompt *prompt, int i)
 	free(cont->str);
 	redir_fill(prompt, cont->type, tmp, i);
 	cont->str = ft_strdup("");
-	append_or_start(prompt, cont->str, NULL, i);
+	update_cmd(prompt, cont->str, NULL, i);
 }
 
-void	words_concat(t_token_data *cont, t_prompt *prompt, int i)
+void	process_token_data(t_token_data *cont, t_prompt *prompt, int i)
 {
 	if (cont->type == OTHER)
 	{
-		cont->str = expand_variables(cont->str, prompt);
+		cont->str = expand_var(cont->str, prompt);
 		update_cmd(prompt, cont->str, NULL, i);
 	}
 	else if (cont->type == QUOTE)
 	{
-		cont->str = expand_variables(cont->str, prompt);
+		cont->str = expand_var(cont->str, prompt);
 		update_cmd(prompt, cont->str, "'", i);
 	}
 	else if (cont->type == DBLQUOTE)
 	{
-		cont->str = expand_variables(cont->str, prompt);
+		cont->str = expand_var(cont->str, prompt);
 		update_cmd(prompt, cont->str, "\"", i);
 	}
 	else if (cont->type == SPACE)

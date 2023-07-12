@@ -12,26 +12,26 @@
 
 # include "minishell.h"
 
-char	*expand_variables(char *quote, t_prompt *prompt)
+char	*expand_var(char *input, t_prompt *prompt)
 {
 	int		j;
-	char	*ret;
+	char	*res;
 
 	j = 0;
-	ret = safe_malloc_bzero(new_size(quote, prompt) + 1, sizeof(char));
-	while (quote[j] != '\0')
+	res = safe_malloc_bzero(new_size(input, prompt) + 1, sizeof(char));
+	while (input[j] != '\0')
 	{
-		if (quote[j] == '$' && quote[0] != '\'')
-			treating_expand(quote, prompt, &j, ret);
+		if (input[j] == '$' && input[0] != '\'')
+			expand_var_and_cpy(input, prompt, &j, res);
 		else
-			ret[ft_strlen(ret)] = quote[j++];
+			res[ft_strlen(res)] = input[j++];
 	}
-	free(quote);
-	ret = escape_spaces(ret);
-	return (ret);
+	free(input);
+	res= sanitize_spaces(res);
+	return (res);
 }
 
-void	treating_expand(char *quote, t_prompt *prompt, int *j, char *ret)
+void	expand_var_and_cpy(char *input, t_prompt *prompt, int *j, char *ret)
 {
 	int		i[2];
 	char	*var;
@@ -39,9 +39,9 @@ void	treating_expand(char *quote, t_prompt *prompt, int *j, char *ret)
 	i[0] = 0;
 	(*j)++;
 	i[0] = *j;
-	while (is_dol_end(quote, *j))
+	while (check_var_end(input, *j))
 		(*j)++;
-	var = find_var(prompt, quote, i, j);
+	var = search_var(prompt, input, i, j);
 	i[0] = 0;
 	if (var != NULL)
 	{
@@ -55,16 +55,16 @@ void	treating_expand(char *quote, t_prompt *prompt, int *j, char *ret)
 	*j = (*j - i[0]) + i[1];
 }
 
-char	*find_var(t_prompt *prompt, char *quote, int i[2], int *j)
+char	*search_var(t_prompt *prompt, char *input, int i[2], int *j)
 {
 	char	*var;
 	char	*tmp;
 
 	i[1] = 0;
-	var = ft_substr(&quote[i[0]], 0, *j - i[0]);
+	var = ft_substr(&input[i[0]], 0, *j - i[0]);
 	i[1] = ft_strlen(var) + 1;
 	if (ft_strncmp(var, "?", 2) == 0)
-		var = w_itoa_rm(var);// to check
+		var = itoa_exit_status(var);
 	else
 	{
 		tmp = strjoin_minus_arg(var, "=");
@@ -97,24 +97,24 @@ char	*check_env_var(char **env, char *var)
 	return (NULL);
 }
 
-char	*escape_spaces(char *ret)
+char	*sanitize_spaces(char *ret)
 {
 	int		i;
 	int		j;
-	char	*newret;
+	char	*newres;
 
 	j = 0;
 	i = 0;
-	newret = safe_malloc_bzero((escaped_size(ret) + 1), sizeof(char));
-	if (newret == NULL)
+	newres = safe_malloc_bzero((escaped_str_size(ret) + 1), sizeof(char));
+	if (newres == NULL)
 		return (NULL);
 	while (ret[j] != '\0')
 	{
 		if (ret[j] == ' ')
-			newret[i++] = '\\';
-		newret[i++] = ret[j++];
+			newres[i++] = '\\';
+		newres[i++] = ret[j++];
 	}
-	newret[i] = '\0';
+	newres[i] = '\0';
 	free (ret);
-	return (newret);
+	return (newres);
 }
