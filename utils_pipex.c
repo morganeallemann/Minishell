@@ -72,7 +72,7 @@ void	set_child_process(t_pipex *pipex, t_prompt *prompt, int idx)
 			redir_last_cmd(pipex, idx);
 		else
 			redir_mid_cmd(pipex, idx);
-		close_fd(pipex);
+		close_all_fd(pipex);
 		//§ft_signals_n_attr(UNSET);
 		check_for_builtin(pipex->cmd[idx], prompt, idx);
 		execve(pipex->path[idx], pipex->cmd[idx], prompt->env);
@@ -82,4 +82,23 @@ void	set_child_process(t_pipex *pipex, t_prompt *prompt, int idx)
 		exit(126);
 	}
 	return ;
+}
+
+void	close_all_fd(t_pipex *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipex->n_cmd)
+	{
+		close(pipex->fd[i][0]);
+		close(pipex->fd[i][1]);
+		if (pipex->file_in[i] != NULL)
+			close(pipex->f_in[i]);
+		if (pipex->file_out[i] != NULL)
+			close(pipex->f_out[i]);
+		if (pipex->here_doc[i] == 1)
+			close(pipex->fd_hd[i][0]);
+		i++;
+	}
 }

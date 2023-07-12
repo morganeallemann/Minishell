@@ -176,6 +176,14 @@ t_list		*count_cmd(int *i, t_list *lst);
 /*utils pipex*/
 void	free_pipepline(t_pipex *ppx);
 void	loop_free(t_pipex *pipe);
+void	set_child_process(t_pipex *pipex, t_prompt *prompt, int idx);
+void	close_all_fd(t_pipex *pipex);
 
+/*utils redirections*/
+void	redir_only_cmd(t_pipex *pipex, int idx);
+void	redir_first_cmd(t_pipex *pipex, int idx);
+void	redir_mid_cmd(t_pipex *pipex, int idx);
+void	redir_last_cmd(t_pipex *pipex, int idx);
+void	ft_dup(int in, int out);
 
 # endif
