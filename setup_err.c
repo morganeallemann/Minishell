@@ -20,7 +20,7 @@ int	free_cmd_lst(t_prompt *prompt)
 	i = 0;
 	lst = prompt->lst_input;
 	while (lst != NULL)
-		lst = counting_cmd(&i, lst);
+		lst = count_cmd(&i, lst);
 	data_lstclear(&prompt->lst_input, free);
 	if (i != prompt->pipe.n_cmd)
 		return (free_under_condition(prompt));

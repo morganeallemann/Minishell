@@ -113,7 +113,7 @@ int	manage_spaces(t_prompt *prompt, int i)
 	line = prompt->prompt;
 	j = i;
 	cell->str = ft_substr(&line[j], 0, (i + 1) - j);
-	cell->type = SPACE;
+	cell->type = ESPACE;
 	ft_lstadd_back(&prompt->lst_input, ft_lstnew(cell));
 	return (i);
 }

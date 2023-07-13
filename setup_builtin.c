@@ -16,6 +16,8 @@ int	g_exit_status;
 
 int	pre_fork_builtin(char **cmd, t_prompt *prompt)
 {
+	(void)prompt;
+	
 	if (cmd[0] == NULL)
 		return (0);
 	if (ft_strncmp(cmd[0], "exit\0", 5) == 0)

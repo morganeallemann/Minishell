@@ -74,7 +74,7 @@ enum e_token
 	HERE_DOC,
 	REDIR_OUT,
 	REDIR_IN,
-	SPACE,
+	ESPACE,
 	OTHER,
 };
 
@@ -190,5 +190,23 @@ void	redir_first_cmd(t_pipex *pipex, int idx);
 void	redir_mid_cmd(t_pipex *pipex, int idx);
 void	redir_last_cmd(t_pipex *pipex, int idx);
 void	ft_dup(int in, int out);
+
+/* expand variables */
+
+void	expand_var_and_cpy(char *input, t_prompt *prompt, int *j, char *ret);
+char	*expand_var(char *input, t_prompt *prompt);
+char	*search_var(t_prompt *prompt, char *input, int i[2], int *j);
+char	*check_env_var(char **env, char *var);
+char	*sanitize_spaces(char *ret);
+
+
+int	new_size(char *quote, t_prompt *prompt);
+char	*itoa_exit_status(char *var);
+int	escaped_str_size(char *input);
+int	check_var_end(char *quote, int j);
+
+int	set_waitpid_status(t_pipex *pipex);
+
+void    update_ptr(char **ptr, int i, char *res);
 
 # endif

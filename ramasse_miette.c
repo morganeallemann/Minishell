@@ -16,7 +16,7 @@ void *rm_malloc(size_t size)
 {
     void *rm; 
 
-    rm = safe_malloc(sizeof(char *));
+    rm = safe_malloc_bzero(1, size);
 	lst_rm(rm,ADD);
 	return(rm);
 
@@ -29,7 +29,7 @@ void	*lst_rm(void *garb, int status)
 	if (status == ADD)
 		ft_lstadd_front(&rm_list, ft_lstnew(garb));
 	else
-		gc_lstclear(&rm_list, free);
+		rm_lstclear(&rm_list, free);
 	return (NULL);
 }
 

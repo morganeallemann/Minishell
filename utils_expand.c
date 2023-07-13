@@ -50,3 +50,53 @@ int	escaped_str_size(char *input)
 	}
 	return (escaped_size);
 }
+
+void	size_dol_or_var(char *var, int *size, t_prompt *prompt)
+{
+	char	*temp;
+	char	*val;
+
+	if (ft_strncmp(var, "?", 2) == 0)
+	{
+		temp = ft_itoa(g_exit_status);
+		*size += ft_strlen(temp);
+		free(var);
+		free(temp);
+	}
+	else
+	{	
+		temp = strjoin_minus_arg(var, "=");
+		val = check_env_var(prompt->env, temp);
+		if (val != NULL)
+		{
+			*size += ft_strlen(val);
+			free(val);
+		}
+	}
+}
+
+int	new_size(char *quote, t_prompt *prompt)
+{
+	int		i;
+	int		j;
+	int		tot_size;
+	char	*var;
+
+	j = 0;
+	tot_size = 0;
+	var = NULL;
+	while (quote[j] != '\0')
+	{
+		if (quote[j++] == '$' && quote[0] != '\'')
+		{
+			i = j;
+			while (check_var_end(quote, j))
+				j++;
+			var = ft_substr(&quote[i], 0, j - (i));
+			size_dol_or_var(var, &tot_size, prompt);
+		}
+		else
+			tot_size++;
+	}
+	return (tot_size);
+}

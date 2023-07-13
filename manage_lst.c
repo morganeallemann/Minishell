@@ -37,7 +37,7 @@ void	data_lstclear(t_list **lst, void (*del)(void*))
 		while (*lst)
 		{
 			temp = (*lst)->next;
-			mini_lstdelone(*lst, del);
+			data_lstdelone(*lst, del);
 			*lst = temp;
 		}
 	}

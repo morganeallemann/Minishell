@@ -64,13 +64,13 @@ int	set_cmd_exc(t_pipex *pipex, char **av, char **env)
 			pipex->fd_hd[i] = safe_malloc_bzero(2, sizeof(int));
 			if (pipe(pipex->fd_hd[i]) == -1)
 				ft_error(av[0], -3);
-			if (ft_heredoc(pipe, i) == -1)
+			if (ft_heredoc(pipex, i) == -1)
 				return (ft_error(av[0], -1));
 		}
 		pipex->cmd[i] = split_simulator(av[i], ' ');
 		if (pipex->cmd[i] == NULL)
 			return (ft_error(av[0], -1));
-		input = set_pipe_data(av, pipe, env, &i);
+		input = set_pipe_data(av, pipex, env, &i);
 		if (input != 0)
 			return (input);
 	}

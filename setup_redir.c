@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 void    redir_fill(t_prompt *prompt, int type, char *res, int i)
 {
