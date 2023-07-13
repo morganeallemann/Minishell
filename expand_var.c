@@ -27,7 +27,7 @@ char	*expand_var(char *input, t_prompt *prompt)
 			res[ft_strlen(res)] = input[j++];
 	}
 	free(input);
-	res= sanitize_spaces(res);
+	res = sanitize_spaces(res);
 	return (res);
 }
 

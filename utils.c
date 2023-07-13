@@ -41,7 +41,16 @@ void	*safe_malloc_bzero(int nmemb, size_t size)
 char	*strjoin_minus_arg(char *s1, char *s2)
 {
 	void	*temp;
+	int		i;
 
+	i = 0;
+
+	while (s1[i])
+	{
+		i++;
+	}
+	s1[i] = ' ';
+	s1[++i] = '\0';
 	temp = ft_strjoin(s1, s2);
 	free(s1);
 	return (temp);
