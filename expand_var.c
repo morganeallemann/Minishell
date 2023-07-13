@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 char	*expand_var(char *input, t_prompt *prompt)
 {
@@ -81,7 +81,7 @@ char	*check_env_var(char **env, char *var)
 	char	*temp;
 
 	i = 0;
-	env_input= NULL;
+	env_input = NULL;
 	while (env[i] != NULL)
 	{
 		env_input = ft_strnstr(env[i], var, ft_strlen(var));

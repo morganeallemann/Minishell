@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void    redir_fill(t_prompt *prompt, int type, char *res, int i)
+void	redir_fill(t_prompt *prompt, int type, char *res, int i)
 {
 	if (type == APP_OUT || type == REDIR_OUT)
 	{
@@ -29,7 +29,7 @@ void    redir_fill(t_prompt *prompt, int type, char *res, int i)
 		update_ptr(prompt->pipe.file_in, i, res);
 }
 
-void    update_ptr(char **ptr, int i, char *res)
+void	update_ptr(char **ptr, int i, char *res)
 {
 	if (ptr[i] == NULL)
 		ptr[i] = res;
@@ -40,10 +40,10 @@ void    update_ptr(char **ptr, int i, char *res)
 	}
 }
 
-int manage_redir(t_prompt *prompt, int type, int i)
+int	manage_redir(t_prompt *prompt, int type, int i)
 {
-	int			j;
-	char		*input;
+	int				j;
+	char			*input;
 	t_token_data	*cell;
 
 	cell = safe_malloc(sizeof(struct s_token_data));
@@ -65,7 +65,7 @@ int manage_redir(t_prompt *prompt, int type, int i)
 	return (i);
 }
 
-int skype_quotes(int i, char *input)
+int	skype_quotes(int i, char *input)
 {
 	if (input[i] == '\'')
 	{
@@ -99,7 +99,7 @@ int	ft_heredoc(t_pipex *pipe, int i)
 	char	*input;
 	size_t	limit_len;
 
-	//ft_signals_n_attr(HD);
+	//ft_sgnals_n_attr(HD);
 	limit_len = ft_strlen(pipe->limiter[i]);
 	write(1, "> ", 2);
 	input = get_next_line(0);

@@ -10,16 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void *rm_malloc(size_t size)
+void	*rm_malloc(size_t size)
 {
-    void *rm; 
+	void	*rm;
 
-    rm = safe_malloc_bzero(1, size);
-	lst_rm(rm,ADD);
-	return(rm);
-
+	rm = safe_malloc_bzero(1, size);
+	lst_rm(rm, ADD);
+	return (rm);
 }
 
 void	*lst_rm(void *garb, int status)
@@ -60,4 +59,3 @@ void	rm_lstdelone(t_list *lst, void (*del)(void*))
 		free(lst);
 	}
 }
-

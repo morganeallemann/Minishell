@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	set_output_fd(t_pipex *pipe, int i)
 {
 	int	output_fd;
 
 	if (pipe->app_end[i] == 0)
-		output_fd = open(pipe->file_out[i], O_CREAT | O_WRONLY | O_TRUNC, 00644);
+		output_fd = open(pipe->file_out[i], O_CREAT | O_WRONLY
+				| O_TRUNC, 00644);
 	else
-		output_fd = open(pipe->file_out[i], O_CREAT | O_APPEND | O_WRONLY, 00644);
+		output_fd = open(pipe->file_out[i], O_CREAT | O_APPEND
+				| O_WRONLY, 00644);
 	return (output_fd);
 }
 
@@ -87,7 +89,6 @@ int	set_pipe_data(char **av, t_pipex *pipex, char **env, int *i)
 	(*i)++;
 	return (0);
 }
-
 
 int	glory_pipe(t_prompt *prompt, t_pipex *pipex)
 {

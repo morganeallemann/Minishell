@@ -20,7 +20,7 @@ t_list	*count_cmd(int *i, t_list *lst)
 	if (cont->type != SPACE && cont->type != PIPE)
 	{
 		while (cont->type != PIPE)
-		{	
+		{
 			if (cont->type >= APP_OUT && cont->type <= REDIR_IN
 				&& cont->str == NULL)
 				(*i)--;
@@ -35,5 +35,3 @@ t_list	*count_cmd(int *i, t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
-
-

@@ -66,7 +66,6 @@ void	ft_free(char **av)
 	}
 }
 
-
 int	ft_error(char *error, int errnum)
 {
 	perror(error);

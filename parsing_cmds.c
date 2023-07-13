@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 void	add_cmds(t_prompt *prompt)
 {
-	t_list		*lst;
+	t_list			*lst;
 	t_token_data	*cont;
-	int			i;
+	int				i;
 
 	lst = prompt->lst_input;
 	init_cmds(prompt);

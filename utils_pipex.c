@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-void loop_free(t_pipex *pipe)
+void	loop_free(t_pipex *pipe)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < pipe->n_cmd)

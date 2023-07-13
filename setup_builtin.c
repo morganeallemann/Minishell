@@ -17,15 +17,13 @@ int	g_exit_status;
 int	pre_fork_builtin(char **cmd, t_prompt *prompt)
 {
 	(void)prompt;
-	
 	if (cmd[0] == NULL)
 		return (0);
 	if (ft_strncmp(cmd[0], "exit\0", 5) == 0)
 		g_exit_status = builtin_exit(cmd);
-    else
+	else
 		return (0);
 	return (1);
-
 }
 
 int	is_prefork_builtin(char **cmd)
@@ -45,7 +43,6 @@ int	is_prefork_builtin(char **cmd)
 	return (-1);
 }
 
-
 void	check_for_builtin(char **cmd, t_prompt *prompt, int i)
 {
 	if (cmd[0] == NULL)
@@ -56,9 +53,7 @@ void	check_for_builtin(char **cmd, t_prompt *prompt, int i)
 			exit (0);
 		return ;
 	}
-
 }
-
 
 int	builtin_exit(char **cmd)
 {

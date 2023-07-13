@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 int	check_var_end(char *quote, int j)
 {
@@ -32,7 +32,6 @@ char	*itoa_exit_status(char *var)
 	free(temp);
 	return (var);
 }
-
 
 int	escaped_str_size(char *input)
 {
@@ -64,7 +63,7 @@ void	size_dol_or_var(char *var, int *size, t_prompt *prompt)
 		free(temp);
 	}
 	else
-	{	
+	{
 		temp = strjoin_minus_arg(var, "=");
 		val = check_env_var(prompt->env, temp);
 		if (val != NULL)
