@@ -85,12 +85,11 @@ enum e_rm_status
 	EXT,
 };
 
-
 /*init data struct*/
 int			init_data_struct(t_prompt *prompt);
 int			init_data(t_prompt *prompt, char **env);
 int			init_cmds(t_prompt *prompt);
-int			init_pipex(t_pipex *pipe,t_prompt *prompt);
+int			init_pipex(t_pipex *pipe, t_prompt *prompt);
 
 /* Gestion de signaux */
 int			set_signal(void);
@@ -133,14 +132,13 @@ int			free_under_condition(t_prompt *prompt);
 int			free_cmd_lst(t_prompt *prompt);
 void		ft_free(char **av);
 int			ft_error(char *error, int errnum);
- 
- /*setup envirenement*/
+
+/*setup envirenement*/
 char		**cpy_env(char *env[]);
 char		*shlvl_up(char *env_prompt);
 char		*checkpath_env(char *env[], char *cmd);
 char		*exec_cmd(char **paths, char *cmd);
 char		**get_path_env(char *env[]);
-
 
 /*setup pipes*/
 int			set_output_fd(t_pipex *pipe, int i);
@@ -170,7 +168,7 @@ int			builtin_exit(char **cmd);
 
 /*utils*/
 void		*safe_malloc(size_t size);
-void   		*safe_malloc_bzero(int nmemb, size_t size);
+void		*safe_malloc_bzero(int nmemb, size_t size);
 char		*strjoin_minus_arg(char *s1, char *s2);
 int			exit_err(char **cmd, int err_type);
 void		free_double(char **env);
@@ -179,34 +177,34 @@ void		free_double(char **env);
 t_list		*count_cmd(int *i, t_list *lst);
 
 /*utils pipex*/
-void	free_pipepline(t_pipex *ppx);
-void	loop_free(t_pipex *pipe);
-void	set_child_process(t_pipex *pipex, t_prompt *prompt, int idx);
-void	close_all_fd(t_pipex *pipex);
+void		free_pipepline(t_pipex *ppx);
+void		loop_free(t_pipex *pipe);
+void		set_child_process(t_pipex *pipex, t_prompt *prompt, int idx);
+void		close_all_fd(t_pipex *pipex);
 
 /*utils redirections*/
-void	redir_only_cmd(t_pipex *pipex, int idx);
-void	redir_first_cmd(t_pipex *pipex, int idx);
-void	redir_mid_cmd(t_pipex *pipex, int idx);
-void	redir_last_cmd(t_pipex *pipex, int idx);
-void	ft_dup(int in, int out);
+void		redir_only_cmd(t_pipex *pipex, int idx);
+void		redir_first_cmd(t_pipex *pipex, int idx);
+void		redir_mid_cmd(t_pipex *pipex, int idx);
+void		redir_last_cmd(t_pipex *pipex, int idx);
+void		ft_dup(int in, int out);
 
 /* expand variables */
 
-void	expand_var_and_cpy(char *input, t_prompt *prompt, int *j, char *ret);
-char	*expand_var(char *input, t_prompt *prompt);
-char	*search_var(t_prompt *prompt, char *input, int i[2], int *j);
-char	*check_env_var(char **env, char *var);
-char	*sanitize_spaces(char *ret);
+void		expand_var_and_cpy(char *input, t_prompt *prompt,
+				int *j, char *ret);
+char		*expand_var(char *input, t_prompt *prompt);
+char		*search_var(t_prompt *prompt, char *input, int i[2], int *j);
+char		*check_env_var(char **env, char *var);
+char		*sanitize_spaces(char *ret);
 
+int			new_size(char *quote, t_prompt *prompt);
+char		*itoa_exit_status(char *var);
+int			escaped_str_size(char *input);
+int			check_var_end(char *quote, int j);
 
-int	new_size(char *quote, t_prompt *prompt);
-char	*itoa_exit_status(char *var);
-int	escaped_str_size(char *input);
-int	check_var_end(char *quote, int j);
+int			set_waitpid_status(t_pipex *pipex);
 
-int	set_waitpid_status(t_pipex *pipex);
+void		update_ptr(char **ptr, int i, char *res);
 
-void    update_ptr(char **ptr, int i, char *res);
-
-# endif
+#endif
